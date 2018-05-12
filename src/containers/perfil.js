@@ -117,7 +117,7 @@ class Perfil extends Component {
             <Grid item xs={12} sm={4}>
               <Paper elevation={1} style={{ padding: 25 }}>
                 <Typography variant="headline">
-                  Número de Projetos de Lei
+                  Número de Projetos de Leis
                 </Typography>
                 <Typography variant="display3">
                   {parseInt(estatisticas.num_projetos_alto[0].total) +
@@ -139,8 +139,8 @@ class Perfil extends Component {
             <Grid item xs={12} sm={4}>
               <Paper elevation={1} style={{ padding: 25 }}>
                 <Typography variant="headline">Presença em Seções</Typography>
-                <Typography variant="body1">{`
-                  Esteve presente em: ${parseInt(presenca[0].qtd_presencas) +
+                <Typography variant="display3">{`
+                  ${parseInt(presenca[0].qtd_presencas) +
                     parseInt(presenca[1].qtd_presencas) +
                     parseInt(presenca[2].qtd_presencas)} de ${67 * 3} 
                 `}</Typography>

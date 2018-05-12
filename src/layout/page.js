@@ -68,10 +68,13 @@ class Page extends React.Component {
               }}
             >
               <Link to="/" style={{ textDecoration: "none" }}>
-                Camara Aberta
+                Câmara Aberta
               </Link>
             </Typography>
 
+            <Button href="http://ilheus.democracy.earth/" color="inherit">
+              Democracy Earth Ilhéus
+            </Button>
             <Link to="/geral">
               <Button color="inherit">Estatistica Geral</Button>
             </Link>

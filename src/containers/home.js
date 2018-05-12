@@ -43,9 +43,7 @@ const styles = {
     display: "flex",
     alignItems: "center"
   },
-  paper: {
-    textAlign: "center"
-  },
+  paper: {},
   chip: {
     margin: 10
   }
@@ -136,14 +134,39 @@ class Home extends Component {
       <Page className={classes.root}>
         <Card className={classes.card} elevation={0}>
           <Grid container spacing={24}>
-            <Grid item xs={12} sm={6} style={{ textAlign: "center" }}>
+            <Grid item xs={12} sm={6}>
               <div className={classes.details}>
                 <CardContent className={classes.content}>
                   <Paper className={classes.paper} elevation={0}>
-                    <Typography variant="headline">Sobre o Projeto</Typography>
-                    <Typography variant="subheading" color="textSecondary">
-                      Description
+                    <Typography style={{ marginTop: 50 }} variant="headline">
+                      Sobre o Projeto
                     </Typography>
+                    <Typography
+                      style={{ marginTop: 20 }}
+                      variant="subheading"
+                      color="textSecondary"
+                    >
+                      O Problema
+                    </Typography>
+                    <p>
+                      O Instituto Nossa Ilhéus possui um iniciativa de criar
+                      relatórios de desempenho dos vereadores da Câmara
+                      Municipal de Ilhéus, porém os métodos utilizados para
+                      veiculação dos dados, até o momento, não são otimizados,
+                      simplificados e necessitam de um padrão consistente do
+                      output dos dados.
+                    </p>
+                    <Typography variant="subheading" color="textSecondary">
+                      Nossa Solução
+                    </Typography>
+                    <p>
+                      Com a intenção de facilitar o acesso aos dados, assim como
+                      melhorar a experiência dos usuários e aumentar a
+                      veiculação do relatório, que demanda grande investimento
+                      de tempo para ser produzido, nós desenvolvemos um sistema
+                      web que representa uma nova proposta para exibição dos
+                      dados do relatório de desempenho dos vereadores.
+                    </p>
                   </Paper>
                 </CardContent>
               </div>
@@ -163,15 +186,17 @@ class Home extends Component {
             <Paper
               className={classes.paper}
               elevation={0}
-              style={{ marginTop: 40 }}
+              style={{ marginTop: 40, textAlign: "center" }}
             >
               <Typography variant="headline">
-                O que os vereadores fazem?
+                Qual a função de um Vereador?
               </Typography>
               <Typography variant="body2">
-                Vereador é o agente político eleito que deve acompanhar o
-                dia-a-dia das comunidades e, por isso, conhece de perto suas
-                necessidades.
+                Como integrante do Poder Legislativo municipal, o vereador tem
+                como função primordial representar os interesses da população
+                perante o poder público. Esse é (ou pelo menos deveria ser) o
+                objetivo final de uma pessoa escolhida como representante do
+                povo.
               </Typography>
             </Paper>
           </Grid>
@@ -182,7 +207,7 @@ class Home extends Component {
             <Paper
               className={classes.paper}
               elevation={0}
-              style={{ marginTop: 40 }}
+              style={{ marginTop: 40, textAlign: "center" }}
             >
               <Typography variant="headline">Os vereadores</Typography>
 
