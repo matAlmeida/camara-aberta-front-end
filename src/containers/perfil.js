@@ -25,7 +25,7 @@ class Perfil extends Component {
       }
     };
 
-    const { id, name, avatar_url, infos } = {
+    const { id, name, avatar_url, infos, estatisticas, presenca } = {
       ...INITIAL_STATE,
       ...this.props.location.state
     };
@@ -34,7 +34,10 @@ class Perfil extends Component {
       labels: ["Baixo Impacto", "Alto Impacto"],
       datasets: [
         {
-          data: [30, 12],
+          data: [
+            estatisticas.num_projetos_baixo[0].total,
+            estatisticas.num_projetos_alto[0].total
+          ],
           backgroundColor: ["#FF6384", "#36A2EB"],
           hoverBackgroundColor: ["#FF6384", "#36A2EB"]
         }
@@ -45,7 +48,10 @@ class Perfil extends Component {
       labels: ["Baixo Impacto", "Alto Impacto"],
       datasets: [
         {
-          data: [30, 12],
+          data: [
+            estatisticas.num_leis_baixo[0].total,
+            estatisticas.num_leis_alto[0].total
+          ],
           backgroundColor: ["#FF6384", "#36A2EB"],
           hoverBackgroundColor: ["#FF6384", "#36A2EB"]
         }
@@ -113,7 +119,10 @@ class Perfil extends Component {
                 <Typography variant="headline">
                   Número de Projetos de Lei
                 </Typography>
-                <Typography variant="display3">20</Typography>
+                <Typography variant="display3">
+                  {parseInt(estatisticas.num_projetos_alto[0].total) +
+                    parseInt(estatisticas.num_projetos_baixo[0].total)}
+                </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -121,13 +130,20 @@ class Perfil extends Component {
                 <Typography variant="headline">
                   Número de Leis Aprovadas
                 </Typography>
-                <Typography variant="display3">12</Typography>
+                <Typography variant="display3">
+                  {parseInt(estatisticas.num_leis_alto[0].total) +
+                    parseInt(estatisticas.num_leis_baixo[0].total)}
+                </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Paper elevation={1} style={{ padding: 25 }}>
                 <Typography variant="headline">Presença em Seções</Typography>
-                <Typography variant="display3">70%</Typography>
+                <Typography variant="body1">{`
+                  Esteve presente em: ${parseInt(presenca[0].qtd_presencas) +
+                    parseInt(presenca[1].qtd_presencas) +
+                    parseInt(presenca[2].qtd_presencas)} de ${67 * 3} 
+                `}</Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>

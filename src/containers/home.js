@@ -55,12 +55,13 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      vereadores: []
+      vereadores: [],
+      outros: []
     };
   }
 
-  componentDidMount() {
-    axios
+  async componentDidMount() {
+    await axios
       .get("https://evencert.com/_andre/nibs2018/api_ca/vereador")
       .then(response => {
         const p = [];
@@ -73,7 +74,7 @@ class Home extends Component {
             infos: {
               naturalidade: rep.naturalidade,
               idade: rep.data_nascimento,
-              estado_civil: rep.descicao_estado_civil,
+              estado_civil: rep.descricao_estado_civil,
               escolaridade: rep.descricao_escolaridade
             }
           });
@@ -81,6 +82,23 @@ class Home extends Component {
 
         this.setState({ vereadores: p });
       });
+
+    this.state.vereadores.map((vereador, index) => {
+      axios
+        .get(
+          `https://evencert.com/_andre/nibs2018/api_ca/vereador?id=${
+            vereador.id
+          }`
+        )
+        .then(resp => {
+          const o = {
+            estatisticas: resp.data.data.estatisticas,
+            presenca: resp.data.data.presenca
+          };
+
+          this.setState({ outros: [...this.state.outros, o] });
+        });
+    });
   }
 
   renderVereador() {
@@ -93,7 +111,8 @@ class Home extends Component {
           to={{
             pathname: `/perfil/${vereador.id}`,
             state: {
-              ...vereador
+              ...vereador,
+              ...this.state.outros[index]
             }
           }}
         >
