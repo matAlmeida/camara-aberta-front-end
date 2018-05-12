@@ -72,6 +72,9 @@ class Page extends React.Component {
               </Link>
             </Typography>
 
+            <Link to="/geral">
+              <Button color="inherit">Estatistica Geral</Button>
+            </Link>
             <Button color="inherit">Ajude o Projeto</Button>
           </Toolbar>
         </AppBar>

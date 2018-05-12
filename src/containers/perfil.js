@@ -14,10 +14,10 @@ class Perfil extends Component {
   render() {
     const INITIAL_STATE = {
       id: 1,
-      name: "Fabio Magal",
+      name: "Nome",
       avatar_url: "http://static.eleicoes2012.info/fotos/c4/fa/fabio-magal.jpg",
       infos: {
-        partido: "fodace",
+        partido: "Partido",
         naturalidade: "Ilhéus/BA",
         idade: 112,
         estado_civil: "sorteiro",
@@ -77,9 +77,9 @@ class Perfil extends Component {
               <TableBody>
                 <TableRow>
                   <TableCell component="th" scope="row">
-                    Idade
+                    Data de Nascimento
                   </TableCell>
-                  <TableCell>{infos.idade} anos</TableCell>
+                  <TableCell>{infos.idade}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell component="th" scope="row">

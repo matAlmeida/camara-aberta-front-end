@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
@@ -51,66 +52,42 @@ const styles = {
 };
 
 class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+      vereadores: []
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://evencert.com/_andre/nibs2018/api_ca/vereador")
+      .then(response => {
+        const p = [];
+
+        response.data.data.map(rep => {
+          p.push({
+            id: rep.vereador_id,
+            name: rep.nome,
+            avatar_url: rep.foto,
+            infos: {
+              naturalidade: rep.naturalidade,
+              idade: rep.data_nascimento,
+              estado_civil: rep.descicao_estado_civil,
+              escolaridade: rep.descricao_escolaridade
+            }
+          });
+        });
+
+        this.setState({ vereadores: p });
+      });
+  }
+
   renderVereador() {
-    const vereadores = [];
+    const Pvereadores = [];
 
-    const vereadores_api = [
-      {
-        id: 1,
-        name: "Fabio Magal",
-        avatar_url:
-          "http://static.eleicoes2012.info/fotos/c4/fa/fabio-magal.jpg",
-        infos: {
-          partido: "fodace",
-          naturalidade: "Ilhéus/BA",
-          idade: 112,
-          estado_civil: "sorteiro",
-          escolaridade: "burrão"
-        }
-      },
-      {
-        id: 2,
-        name: "Fabio Magal",
-        avatar_url:
-          "http://static.eleicoes2012.info/fotos/c4/fa/fabio-magal.jpg",
-        infos: {
-          partido: "fodace",
-          naturalidade: "Ilhéus/BA",
-          idade: 112,
-          estado_civil: "sorteiro",
-          escolaridade: "burrão"
-        }
-      },
-      {
-        id: 3,
-        name: "Fabio Magal",
-        avatar_url:
-          "http://static.eleicoes2012.info/fotos/c4/fa/fabio-magal.jpg",
-        infos: {
-          partido: "fodace",
-          naturalidade: "Ilhéus/BA",
-          idade: 112,
-          estado_civil: "sorteiro",
-          escolaridade: "burrão"
-        }
-      },
-      {
-        id: 4,
-        name: "Fabio Magal",
-        avatar_url:
-          "http://static.eleicoes2012.info/fotos/c4/fa/fabio-magal.jpg",
-        infos: {
-          partido: "fodace",
-          naturalidade: "Ilhéus/BA",
-          idade: 112,
-          estado_civil: "sorteiro",
-          escolaridade: "burrão"
-        }
-      }
-    ];
-
-    vereadores_api.map((vereador, index) => {
-      vereadores.push(
+    this.state.vereadores.map((vereador, index) => {
+      Pvereadores.push(
         <Link
           key={index}
           to={{
@@ -131,7 +108,7 @@ class Home extends Component {
       );
     });
 
-    return vereadores;
+    return Pvereadores;
   }
 
   render() {
@@ -190,7 +167,7 @@ class Home extends Component {
             >
               <Typography variant="headline">Os vereadores</Typography>
 
-              {this.renderVereador()}
+              {this.state.vereadores && this.renderVereador()}
             </Paper>
           </Grid>
         </Grid>
